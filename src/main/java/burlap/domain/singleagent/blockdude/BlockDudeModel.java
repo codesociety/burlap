@@ -195,7 +195,9 @@ public class BlockDudeModel implements FullStateModel {
 				return;
 			}
 
-			if(map[bx][ay+1] == 1){
+			//System.out.println(bx+","+ay);
+			if(bx <= -1 || bx >= maxx || map[bx-1][ay+1] == 1){
+			//if(map[bx][ay+1] == 1){
 				return ;
 			}
 
@@ -319,8 +321,12 @@ public class BlockDudeModel implements FullStateModel {
 	public int greatestHeightBelow(BlockDudeState s, int [][] map, int xWidth, int x, int maxY){
 
 		int maxHeight = 0;
+		if(x >= maxx){
+			x=maxx;
+		}
+		//System.out.println(maxx+","+maxY);
 		for(int y = maxY; y >= 0; y--){
-			if(map[x][y] == 1){
+			if(map[x-1][y-1] == 1){
 				maxHeight = y;
 				break;
 			}
